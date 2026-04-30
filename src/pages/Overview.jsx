@@ -68,7 +68,7 @@ export default function Overview() {
         <h1>{content?.title || "Overview"}</h1>
 
         <p style={{ color: "var(--muted)", marginBottom: "10px" }}>
-          Click a card to expand details
+          <br /><b>Click a card to expand details</b><br /><br />
         </p>
 
         {/* TOP 4 PANELS */}
@@ -136,63 +136,3 @@ export default function Overview() {
     </motion.div>
   );
 }
-
-// import { useEffect, useState } from "react";
-// import { motion } from "framer-motion";
-// import { pageTransition } from "../motion";
-// import { supabase } from "../lib/supabaseClient";
-
-// export default function Overview() {
-//   const [content, setContent] = useState(null);
-
-//   useEffect(() => {
-//     async function load() {
-//       const res = await supabase
-//         .from("resume_overview")
-//         .select("content")
-//         .eq("section", "main")
-//         .limit(1);
-
-//       const row = res.data && res.data[0];
-//       setContent(row ? row.content : null);
-//     }
-
-//     load();
-//   }, []);
-
-//   return (
-//     <motion.div
-//       initial={pageTransition.initial}
-//       animate={pageTransition.animate}
-//       exit={pageTransition.exit}
-//       transition={pageTransition.transition}
-//     >
-//       <div>
-//         <h1>{content?.title || "Overview"}</h1>
-
-//         <div className="grid">
-//           {(content?.stats || []).map((s, i) => (
-//             <div className="stat" key={i}>
-//               <div className="label">{s.label || "-"}</div>
-//               <div className="value">{s.value || "-"}</div>
-//             </div>
-//           ))}
-//         </div>
-
-//         <div className="panel">
-//           <h2>Activity</h2>
-
-//           <div className="activity">
-//             {(content?.activity || []).map((item, i) => (
-//               <div key={i}>{item}</div>
-//             ))}
-
-//             {(!content?.activity || content.activity.length === 0) && (
-//               <div>No activity</div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </motion.div>
-//   );
-// }

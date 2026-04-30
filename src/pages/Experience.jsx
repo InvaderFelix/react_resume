@@ -36,7 +36,7 @@ export default function Experience() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Add experience ..."
+            placeholder="Add GMHBA? ..."
           />
           <button className="btn" onClick={add}>
             Add

@@ -22,6 +22,38 @@ body {
   color: var(--text);
 }
 
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+a:hover {
+  color: var(--text);
+  border-bottom: 1px solid var(--accent);
+}
+
+/* Base text elements */
+code {
+  display: inline;
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.inline-code {
+  background: var(--panel2);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: monospace;
+}
+
 /* Layout shell */
 .layout {
   display: flex;
@@ -31,7 +63,11 @@ body {
 
 /* Sidebar */
 .sidebar {
+  height: 100vh; /* AM: keep this to fix navbar height to 100% of viewport */
+  position: sticky;
+  top: 0;
   width: 240px;
+  min-width: 160px;
   background: var(--sidebar-gradient);
   border-right: 1px solid var(--border);
   padding: 20px;
@@ -70,11 +106,12 @@ body {
 /* Main page surface (IMPORTANT FIX) */
 .main {
   flex: 1;
+  min-width: 180px;
   padding: 30px;
   background: var(--bg);
 }
 
-/* Headings FIX */
+/* Headings */
 h1 {
   color: var(--text);
   margin-top: 0;
@@ -171,7 +208,7 @@ button {
   margin-top: 10px;
 }
 
-/* SWITCH COMPONENT */
+/* Components */
 
 .switch {
   display: flex;
