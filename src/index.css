@@ -1,0 +1,250 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #121a26;
+  --panel2: #0f1622;
+  --text: #e6eaf2;
+  --muted: #9aa6b2;
+  --border: #1e2a3a;
+  --accent: #6ea8fe;
+  --danger: #ff5c5c;
+  --sidebar-gradient: linear-gradient(to bottom, #1c2a3d, #0d141f, #06080d);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+/* App background */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Layout shell */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  color: var(--text);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: var(--sidebar-gradient);
+  border-right: 1px solid var(--border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.nav {
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.nav:hover {
+  background: var(--panel2);
+  color: var(--text);
+}
+
+.nav.active {
+  background: var(--accent);
+  color: #0b0f14;
+}
+
+/* Main page surface (IMPORTANT FIX) */
+.main {
+  flex: 1;
+  padding: 30px;
+  background: var(--bg);
+}
+
+/* Headings FIX */
+h1 {
+  color: var(--text);
+  margin-top: 0;
+}
+
+/* Panels */
+.panel {
+  margin-top: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  color: var(--text);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 14px;
+}
+
+.label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.value {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 6px;
+  color: var(--text);
+}
+
+/* Activity */
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--muted);
+}
+
+/* Inputs */
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel2);
+  color: var(--text);
+}
+
+/* Buttons */
+button {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn {
+  background: var(--accent);
+  color: #0b0f14;
+}
+
+.danger {
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+/* Helpers */
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Items */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* SWITCH COMPONENT */
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  width: 46px;
+  height: 24px;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text);
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.switch input:checked + .slider {
+  background: var(--accent);
+}
+
+.switch input:checked + .slider::before {
+  transform: translate(22px, -50%);
+}
+
+/* Settings */
+.setting {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  color: var(--muted);
+}
+
+/* LIGHT THEME */
+.layout.light {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --panel2: #eef2f7;
+  --text: #0a0a0a;
+  --muted: #374151;
+  --border: #d1d5db;
+  --accent: #2563eb;
+  --danger: #dc2626;
+  --sidebar-gradient: linear-gradient(to bottom, #ffffff, #eef2f7, #b9c2cf);
+}
+
+/* Transitions */
+body,
+.layout,
+.panel,
+.sidebar,
+input,
+button {
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
