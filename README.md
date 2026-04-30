@@ -1,16 +1,39 @@
-# React + Vite
+# Session Log — WSL2 + React (Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Environment
+Windows 11 running WSL2 (Debian), optional Docker containerisation.
 
-Currently, two official plugins are available:
+Node.js v24.15.0 with npm 11.12.1.  
+React project scaffolded using Vite v8.0.10 with HMR enabled (no React Compiler).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Setup
+Initial work focused on basic state and props structure within a React (Vite) application. Build system standardised around Vite.
 
-## React Compiler
+## Routing
+Added client-side routing to support page transitions using React Router.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Encountered missing dependency and resolved with installation of `react-router-dom`.
 
-## Expanding the ESLint configuration
+## Animations
+Integrated Framer Motion for UI transitions.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Explored variant-based animation patterns and introduced a shared motion config file (`/src/motion.js`) imported across pages.
+
+Time spent refining animation flow and transition feel exceeded initial expectations but improved UI polish significantly.
+
+## Styling System
+Simplified theming approach to avoid overengineering. Centralised design tokens into CSS variables:
+
+--bg (background)  
+--panel / --panel2 (surface layers)  
+--text / --muted (typography hierarchy)  
+--border (structure)  
+--accent / --danger (semantic actions)
+
+## Backend Integration
+Introduced `.env` configuration for Supabase integration. Backend connection in progress.
+
+Future consideration: migrating UI-driven panels into Supabase to support a more CMS-like architecture.
+
+## Current State
+Application scaffold is stable, routing and animations are in place, and backend integration is underway.
