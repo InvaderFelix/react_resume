@@ -12,7 +12,7 @@ export default function Overview() {
       const { data, error } = await supabase
         .from("resume_overview")
         .select("content")
-        .eq("section", "main")
+        .eq("section", "overview")
         .limit(1);
 
       if (error) {
@@ -27,33 +27,7 @@ export default function Overview() {
     load();
   }, []);
 
-  const panels = [
-    {
-      id: "panel1",
-      label: "Profile",
-      value: 'Anthony "Felix" Mallon',
-      content: "Profile content goes here"
-    },
-    {
-      id: "panel2",
-      label: "Skills",
-      value: "Computers, Comms, Collab",
-      content: "Skills content goes here"
-    },
-    {
-      id: "panel3",
-      label: "Projects",
-      value: "Teamwork, Systems, Dev",
-      content: "Projects content goes here"
-    },
-    {
-      id: "panel4",
-      label: "Summary",
-      value: "Soft skills, Software, Interests",
-      content: "Summary content goes here"
-    }
-  ];
-
+  const panels = content?.panels || [];
   const activePanel = panels.find(p => p.id === active);
 
   return (
@@ -69,7 +43,11 @@ export default function Overview() {
         <p className="hint">Click a card to expand details</p>
 
         {/* TOP PANELS */}
-        <div className="grid">
+        <motion.div
+          className="grid"
+          layout
+          transition={{ type: "spring", stiffness: 110, damping: 28 }}
+        >
           {panels.map(p => (
             <div
               key={p.id}
@@ -82,37 +60,50 @@ export default function Overview() {
               <div className="value">{p.value}</div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* EXPANDED PANEL */}
         <AnimatePresence mode="wait">
           {activePanel && (
             <motion.div
+              key={activePanel.id}
               className="panel"
-              initial={{ opacity: 0, y: 10, height: 0 }}
-              animate={{ opacity: 1, y: 0, height: "auto" }}
-              exit={{ opacity: 0, y: 10, height: 0 }}
-              transition={{ duration: 0.2 }}
+              layout
               style={{ overflow: "hidden" }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <h2>{activePanel.label}</h2>
-              <div>{activePanel.content}</div>
+
+              <div
+                dangerouslySetInnerHTML={{ __html: activePanel.content }}
+              />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* ORIGINAL STATS */}
-        <div className="grid">
+        {/* STATS */}
+        <motion.div
+          className="grid"
+          layout
+          transition={{ type: "spring", stiffness: 110, damping: 28 }}
+        >
           {(content?.stats || []).map((s, i) => (
             <div className="stat" key={i}>
               <div className="label">{s.label || "-"}</div>
               <div className="value">{s.value || "-"}</div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* ACTIVITY */}
-        <div className="panel">
+        <motion.div
+          className="panel"
+          layout
+          transition={{ type: "spring", stiffness: 110, damping: 28 }}
+        >
           <h2>Activity</h2>
 
           <div className="activity">
@@ -124,7 +115,7 @@ export default function Overview() {
               <div>No activity</div>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
