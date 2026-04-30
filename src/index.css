@@ -63,7 +63,7 @@ code {
 
 /* Sidebar */
 .sidebar {
-  height: 100vh; /* AM: keep this to fix navbar height to 100% of viewport */
+  height: 100vh; /* keep this to fix navbar height to 100% of viewport */
   position: sticky;
   top: 0;
   width: 240px;
@@ -74,6 +74,7 @@ code {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 1000;
 }
 
 .sidebar-footer {
@@ -206,6 +207,18 @@ button {
   color: #0b0f14;
 }
 
+.menu-btn {
+  display: none;
+  margin-bottom: 12px;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
 .danger {
   background: transparent;
   border: 1px solid var(--danger);
@@ -305,4 +318,30 @@ body,
 input,
 button {
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Mobile override */
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    height: 100vh;
+    width: 260px;
+    transition: left 0.25s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .main {
+    margin-left: 0;
+  }
 }
