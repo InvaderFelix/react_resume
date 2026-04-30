@@ -14,12 +14,12 @@ export default function Overview() {
         .select("content")
         .eq("section", "main")
         .limit(1);
-    
+
       if (error) {
         console.error(error);
         return;
       }
-    
+
       const row = data?.[0];
       setContent(row?.content ?? null);
     }
@@ -27,12 +27,11 @@ export default function Overview() {
     load();
   }, []);
 
-  
   const panels = [
     {
       id: "panel1",
       label: "Profile",
-      value: "Anthony \"Felix\" Mallon",
+      value: 'Anthony "Felix" Mallon',
       content: "Profile content goes here"
     },
     {
@@ -67,23 +66,17 @@ export default function Overview() {
       <div>
         <h1>{content?.title || "Overview"}</h1>
 
-        <p style={{ color: "var(--muted)", marginBottom: "10px" }}>
-          <br /><b>Click a card to expand details</b><br /><br />
-        </p>
+        <p className="hint">Click a card to expand details</p>
 
-        {/* TOP 4 PANELS */}
+        {/* TOP PANELS */}
         <div className="grid">
           {panels.map(p => (
             <div
               key={p.id}
-              className="stat"
+              className={`stat ${active === p.id ? "active" : ""}`}
               onClick={() =>
                 setActive(prev => (prev === p.id ? null : p.id))
               }
-              style={{
-                cursor: "pointer",
-                border: active === p.id ? "1px solid var(--accent)" : undefined
-              }}
             >
               <div className="label">{p.label}</div>
               <div className="value">{p.value}</div>
@@ -96,11 +89,11 @@ export default function Overview() {
           {activePanel && (
             <motion.div
               className="panel"
-              layout
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 10, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: 10, height: 0 }}
               transition={{ duration: 0.2 }}
+              style={{ overflow: "hidden" }}
             >
               <h2>{activePanel.label}</h2>
               <div>{activePanel.content}</div>
@@ -118,7 +111,7 @@ export default function Overview() {
           ))}
         </div>
 
-        {/* ORIGINAL ACTIVITY */}
+        {/* ACTIVITY */}
         <div className="panel">
           <h2>Activity</h2>
 
